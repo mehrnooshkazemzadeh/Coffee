@@ -1,0 +1,27 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Coffee.WebApplication/bin/Debug/netcoreapp3.1
+/Coffee.WebApplication/obj/Debug/netcoreapp3.1
+/Coffee.WebApplication/obj
+/CoffeeFactory.WindowsService/bin/Debug/netcoreapp3.1
+/CoffeeFactory.WindowsService/obj/Debug/netcoreapp3.1
+/CoffeeService/bin/Debug/netcoreapp3.1
+/CoffeeService/obj/Debug/netcoreapp3.1
+/CoffeeService/obj
+/Framework.Core/obj
+/Framework.Core/bin/Debug/netstandard2.1
+/StoreService/bin/Debug/netcoreapp3.1
+/StoreService/obj
+/Coffee.SharedService/bin/Debug/netcoreapp3.1
+/Coffee.SharedService/obj/Debug/netcoreapp3.1
+/Coffee.SharedService/bin/Release/netcoreapp3.1
+/Coffee.SharedService/obj/Release/netcoreapp3.1
+/Coffee.WebApplication/bin/Release/netcoreapp3.1
+/CoffeeService/bin/Release/netcoreapp3.1
+/CoffeeService/Properties/PublishProfiles
+/StoreService/bin/Release/netcoreapp3.1
+/StoreService/Properties/PublishProfiles
+/CoffeeFactory.WindowsService/obj/Release/netcoreapp3.1
+/Framework.Core/bin/Release/netstandard2.1

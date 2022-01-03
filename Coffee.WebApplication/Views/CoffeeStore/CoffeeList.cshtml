@@ -1,0 +1,105 @@
+﻿@model Coffee.WebApplication.Models.CoffeeToStoreModel
+@{
+    Layout = "_ControlPanelLayout";
+}
+
+<h2 style="margin-bottom:30px">products</h2>
+
+<form method="post" asp-action="MovetoStore">
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label">Move to the coffee shop:</label>
+
+            @Html.DropDownListFor(x => x.StoreId, new SelectList(Model.Stores, "StoreId", "FullName", Model.StoreId), "---", new { @class = "form-control" })
+            <span asp-validation-for="StoreId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+
+            <label asp-for="PostDate" class="control-label"></label>
+            <input type="datetime-local" asp-for="PostDate" class="form-control " required />
+            <span asp-validation-for="PostDate" class="text-danger"></span>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CoffeeId)
+                    </th>*@
+                <th>
+                    Name
+                </th>
+                <th>
+                    ProductionDate
+                </th>
+                <th>
+                    Quantity In Pack
+                </th>
+
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    PackQuantity
+                </th>
+                <th>
+                    SendedPackQuantity
+                </th>
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.CoffeeModels != null)
+            {
+                @for (int i = 0; i < Model.CoffeeModels.Count; i++)
+
+                {
+                    <input type="hidden" value="@Model.CoffeeModels[i].CoffeeId" asp-for="@Model.CoffeeModels[i].CoffeeId" />
+                    @Html.HiddenFor(x => x.CoffeeModels[i].CoffeeTypeModel.QuantityInPack)
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.CoffeeId)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(x => x.CoffeeModels[i].CoffeeTypeModel.Title)
+                            @Html.HiddenFor(x => x.CoffeeModels[i].CoffeeTypeModel.Title)
+                        </td>
+                        <td>
+                            <label asp-for="@Model.CoffeeModels[i].ProductionDate.Date">@Model.CoffeeModels[i].ProductionDate.Date</label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => x.CoffeeModels[i].CoffeeTypeModel.QuantityInPack)
+
+                        </td>
+                        <td>
+                            <label asp-for="@Model.CoffeeModels[i].Quantity">@Model.CoffeeModels[i].Quantity</label>
+                            @Html.HiddenFor(x => x.CoffeeModels[i].Quantity)
+
+                        </td>
+                        <td>
+                            <label asp-for="@Model.CoffeeModels[i].PackQuantity">@Model.CoffeeModels[i].PackQuantity</label>
+                            @Html.HiddenFor(x => x.CoffeeModels[i].PackQuantity)
+                        </td>
+                        <td>
+                            <input type="number" min="0" max="@Model.CoffeeModels[i].PackQuantity" value="@Model.CoffeeModels[i].SendedPackQuantity" asp-for="@Model.CoffeeModels[i].SendedPackQuantity" />
+                            <span asp-validation-for="@Model.CoffeeModels[i].PackQuantity" class="text-danger"></span>
+
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+
+        <input type="submit" value="Move" class="btn btn-primary" />
+
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,58 @@
+﻿@model Coffee.WebApplication.Models.StoreInventoryModel
+
+<form method="post" >
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label class="control-label">Coffee Shop:</label>
+
+            @Html.DropDownListFor(x => x.StoreId, new SelectList(Model.Stores, "StoreId", "FullName", Model.StoreId), "---", new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-5">
+
+            <label class="control-label">Coffee Type:</label>
+            @Html.DropDownListFor(x => x.CoffeeTypeId, new SelectList(Model.CoffeeTypes, "CoffeeTypeId", "Title", Model.CoffeeTypeId), "---", new { @class = "form-control" })
+
+        </div>
+        <div class="form-group">
+
+            <input type="submit" value="Search" class="btn btn-primary"    style="margin-top: 30px;" />
+
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Coffee Shop
+            </th>
+
+            <th>
+                Quantity
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.StoreInventories)
+            {
+                <tr>
+                    <td>
+                        @item.CoffeeTypeName
+                    </td>
+                    <td>
+                        @Model.Stores.Where(x => x.StoreId == item.StoreId).Select(x => x.FullName).FirstOrDefault();
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
